@@ -1,0 +1,14 @@
+def en_cox_tekrar(list):
+    max_tekrar = 0
+    for i in range(len(list)-1):
+        tekrar = 1
+        while i < len(list)-1 and list[i] == list[i+1]:
+            tekrar += 1
+            i += 1
+        if tekrar > max_tekrar:
+            max_tekrar = tekrar
+    return max_tekrar
+
+list = ['A', 2, 2, 'C', 'c', '#', 'A', 'A', 'A', 'A', 4, 'f', 'f', 'f', 'f']
+print(en_cox_tekrar(list))
+      
