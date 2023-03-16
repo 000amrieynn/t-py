@@ -1,0 +1,39 @@
+
+import turtle
+import time
+
+turtle.setup(650., 350, 200, 200)
+turtle.pendown()
+turtle.pensize(10)
+turtle.pencolor('green')
+
+
+def yonca(radius, rotate):
+    for i in range(4):
+        direction = i * 90
+        turtle.seth(60 + direction + rotate)
+        turtle.fd(4 * radius)
+        for j in range(2):
+            turtle.seth(90 + direction + rotate)
+            turtle.circle(radius, 180)
+        turtle.seth(-60 + direction + rotate)
+        turtle.fd(4 * radius)
+    turtle.seth(-90)
+    turtle.fd(6 * radius)
+
+
+yonca(30, 45)
+turtle.penup()
+turtle.goto(-660, 290)
+turtle.pendown()
+turtle.write("Bir  Çinare.H atasözü derki: ",
+             font=("Time New Roman", 15, "italic"))
+
+turtle.penup()
+turtle.goto(-615, 264)
+turtle.pendown()
+turtle.write("  'Güzel şeyler zaman alır':)   ",
+             font=("Time New Roman", 15, "italic"))
+
+
+time.sleep(10)
