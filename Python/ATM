@@ -1,0 +1,65 @@
+import sys
+
+Hesablar = {
+    "nargiz1712": {"balans": 5000,"password":"1712", "kart_nomresi": "4131 5432 5665 1713"},
+    "chinara0307": {"balans": 5000,"password":"0307", "kart_nomresi": "4154 6545 7451 5221"},
+    "azer1802": {"balans": 5000,"password":"1802","kart_nomresi": "6476 0286 2478 6545"},
+    "ulvi0601": {"balans": 5000, "password":"0601","kart_nomresi": "4662 8969 5410 5569"},
+    "emin6579": {"balans": 5000,"password":"6579", "kart_nomresi": "1620 6895 2969 4601"},   
+}
+def balans_sorgusu(hesab):
+    print(f"Cari balansiniz: {hesab['balans']}")
+
+def withdraw(hesab):
+    mebleg = int(input("Cixarmag istediyiniz meblegi daxil edin: "))
+    if mebleg > hesab["balans"]:
+        print("Balansinizda kifayet qeder vesait yoxdur!")
+        return
+    hesab["balans"] -= mebleg
+    print(f"Cixarilma ugurlu oldu. Cari balansiniz: {hesab['balans']}")
+
+def transfer(from_hesab, to_hesab):
+    mebleg = int(input("Kocurmek ucun meblegi daxil edin: "))
+    if mebleg > from_hesab["balans"]:
+        print("Balansinizda kifayet qeder vesait yoxdur!")
+        return
+    kart_nomresi = input("Kocurmek ucun kart nomresini daxil edin: ")
+    if kart_nomresi != to_hesab["kart_nomresi"]:
+        print("Yanlis kart nomresi!")
+        return
+    from_hesab["balans"] -= mebleg
+    to_hesab["balans"] += mebleg
+    print("Kocurme ugurlu oldu!")
+    print(f"Cari balansiniz: {from_hesab['balans']}")
+
+while True:
+    print("KapitalBank-a xoş gəlmisiniz")
+    username = input("Istifadeci adinizi daxil edin: ")
+    password = input("Sifrenizi daxil edin: ")
+    if username not in Hesablar or Hesablar[username]["password"] != password:
+        print("Yanlis idtifadeci adi ve ya parolu")
+        continue
+
+    hesab = Hesablar[username]
+    print(f"Xos gelmisiniz {username}")
+    while True:
+        print("1. Balans")
+        print("2. Cixarmaq")
+        print("3. Kocurmek")
+        print("4. Cixis")
+        choice = input("Seciminizi daxil edin: ")
+        if choice == "1":
+            balans_sorgusu(hesab)
+        elif choice == "2":
+            withdraw(hesab)
+        elif choice == "3":
+            to_username = input("Kocurmek ucun istifadeci adini daxil edin: ")
+            if to_username not in Hesablar:
+                print("Yanlis istifadeci adi")
+                continue
+            to_hesab = Hesablar[to_username]
+            transfer(hesab, to_hesab)
+        elif choice == "4":
+            sys.exit()
+        else:
+            print("Yanlis secim")
