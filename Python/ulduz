@@ -1,0 +1,16 @@
+setir = int(input("hundurluk:"))
+sutun = int(input("kotuk sayi: "))
+
+for i in range(1, setir+1):
+    ulduz = i*2-1
+    bosluq = i+setir-ulduz
+    for j in range(bosluq):
+        print(' ', end='')
+    for k in range(ulduz):
+        print('*', end='')
+    print()
+
+for l in range(sutun):
+    for m in range((setir*2+1)//2):
+        print(' ', end='')
+    print('*')
