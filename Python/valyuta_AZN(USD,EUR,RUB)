@@ -1,0 +1,14 @@
+valyuta = {'USD' : 1.7, 'EUR' : 2.0, 'RUB' : 0.002}
+
+miqdar = float(input("Miqdar:"))
+cevir = input("Cevireceyiniz pul vahidini secin (USD/EUR/RUB): ")
+
+if cevir == 'USD':
+    netice = miqdar / valyuta['USD']
+    print("{:.2f} AZN = {:.2f} USD".format(miqdar,netice))
+elif miqdar == 'EUR':
+    netice = miqdar / valyuta['EUR']
+    print("{:.2f} AZN = {:.2f} EUR".format(miqdar, netice))
+elif miqdar == 'RUB':
+    netice = miqdar / valyuta['RUB']
+    print("{:.2f} AZN = {:2f } RUB".format(miqdar, netice))
