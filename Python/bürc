@@ -1,0 +1,15 @@
+ay = int(input("Doguldugunuz ayi daxil edin (1-12): "))
+gun = int(input("Doguldugunuz gunu daxil edin (1-31): "))
+
+burcler = [
+    (1, 20, "Oğlaq"), (2, 19, "Dolça"), (3, 21, "Balıq"), (4, 20, "Qoç"),
+    (5, 21, "Buğa"), (6, 21, "Əkizlər"), (7, 23, "Xərçəng"), (8, 23, "Şir"),
+    (9, 23, "Qız"), (10, 23, "Tərəzi"), (11, 22, "Əqrəb"), (12, 22, "Oxatan")
+]
+for i in range(len(burcler)):
+    if (ay, gun) <= burcler[i][:2]:
+        burc = burcler[i][2]
+        break
+    elif i == len(burcler) - 1:
+        burc = burcler[0][2]
+print("Burcunuz:", burc)
