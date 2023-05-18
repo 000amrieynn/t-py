@@ -1,0 +1,75 @@
+import math
+import tkinter as tk
+import tkinter.font as font
+
+
+def calculate_area():
+    try:
+        a = float(entry_a.get())
+        b = float(entry_b.get())
+        c = float(entry_c.get())
+
+        if a + b > c and a + c > b and b + c > a:
+            s = (a + b + c) / 2
+            triangle_area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+            result_label.config(text="NƏTİCƏ: {}".format(triangle_area), font=("Arial", 18, "bold"), fg="#4C7B6D")
+        else:
+            result_label.config(text="XƏTA: Girilən dəyərlər bir üçbucaq təşkil etmir", font=("Arial", 14), fg="red")
+    except ValueError:
+        result_label.config(text="XƏTA: Geçərsiz tərəf uzunluğu", font=("Arial", 14), fg="red")
+
+
+root = tk.Tk()
+root.geometry("800x700")
+root.configure(bg="#8BACAA")
+root.title("Üçbucağın Sahnesi")
+
+font_size = font.Font(size=15)
+
+title_label = tk.Label(
+    root,
+    text="ÜÇBUCAĞIN HƏR 3 TƏRƏFİNİ UYĞUN XANALARDA QEYD EDİB SAHƏNİ HESABLA DÜYMƏSİNƏ KLİKLƏYİN ",
+    font=("Arial", 18, "bold"),
+    bg="#8BACAA",
+)
+title_label.pack(pady=20)
+
+frame = tk.Frame(root, bg="#8BACAA")
+frame.pack(pady=20)
+
+label_a = tk.Label(frame, text="Tərəf a:", font=font_size)
+label_a.pack(side="left", padx=20)
+
+entry_a = tk.Entry(frame, font=font_size, border=0)
+entry_a.pack(side="left", padx=5)
+
+label_b = tk.Label(frame, text="Tərəf b:", font=font_size)
+label_b.pack(side="left", padx=20)
+
+entry_b = tk.Entry(frame, font=font_size, border=0)
+entry_b.pack(side="left", padx=5)
+
+label_c = tk.Label(frame, text="Tərəf c:", font=font_size)
+label_c.pack(side="left", padx=20)
+
+entry_c = tk.Entry(frame, font=font_size, border=0)
+entry_c.pack(side="left", padx=5)
+
+calculate_button = tk.Button(
+    root,
+    text="Sahəni hesabla",
+    font=font_size,
+    command=calculate_area,
+    border=0,
+    relief="solid",
+    bg="#4C7B6D",
+    fg="white",
+    activebackground="#6EA993",
+    activeforeground="white",
+)
+calculate_button.pack(pady=20)
+
+result_label = tk.Label(root, text="", font=("Arial", 14), anchor="sw")
+result_label.pack(side="bottom", padx=20, pady=20, anchor="sw")
+
+root.mainloop()
