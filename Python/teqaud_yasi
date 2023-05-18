@@ -1,0 +1,23 @@
+def pensiya_alan(cins, dogum_gunu):
+    halhazirki_il = 2023
+    retirement_age_male = 65
+    retirement_age_female = 60
+
+    if cins == "kisi":
+        pensiya_yasi = retirement_age_male
+    elif cins == "qadin":
+        pensiya_yasi = retirement_age_female
+    else:
+        return "Geçersiz cinsiyet"
+
+    age = halhazirki_il - dogum_gunu
+    if age >= pensiya_yasi:
+        return "Pensiya alir"
+    else:
+        return "Pensiya almir"
+
+cins = input("Cinsiyeti daxil et (kisi/qadin): ")
+dogum_gunu = int(input("Dogum tarixini daxil et: "))
+
+result = pensiya_alan(cins, dogum_gunu)
+print(result)
