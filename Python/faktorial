@@ -1,0 +1,9 @@
+def faktorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * faktorial(n - 1)
+
+say = int(input("Bir eded daxil edin: "))
+netice = faktorial(say)
+print("Faktorial:", netice)
