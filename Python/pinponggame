@@ -1,0 +1,97 @@
+import turtle, winsound
+
+pencere = turtle.Screen()
+pencere.title("PinPong")
+pencere.bgcolor("black")
+pencere.setup(width=800, height=600)
+pencere.tracer(0)
+
+raketa = turtle.Turtle()
+raketa.speed(0)
+raketa.shape('square')
+raketa.color('green')
+raketa.penup()
+raketa.goto(-350, 0)
+raketa.shapesize(5, 1)
+
+raketb = turtle.Turtle()
+raketb.speed(0)
+raketb.shape('square')
+raketb.color('blue')
+raketb.penup()
+raketb.goto(350, 0)
+raketb.shapesize(5, 1)
+
+top = turtle.Turtle()
+top.speed(0)
+top.shape('circle')
+top.color('red')
+top.penup()
+top.dx = 0.15
+top.dy = 0.15
+
+yazi = turtle.Turtle()
+yazi.speed(0)
+yazi.color('white')
+yazi.penup()
+yazi.goto(0, 260)
+yazi.write("Oyuncu A:0   Oyuncu B:0", align='center', font=('Courier', 24, 'bold'))
+yazi.hideturtle()
+xala = 0
+xalb = 0
+
+
+def raketa_up():
+    y = raketa.ycor()
+    y = y + 20
+    raketa.sety(y)
+def raketa_down():
+    y = raketa.ycor()
+    y = y - 20
+    raketa.sety(y)
+def raketb_up():
+    y = raketb.ycor()
+    y = y + 20
+    raketb.sety(y)
+def raketb_down():
+    y = raketb.ycor()
+    y = y - 20
+    raketb.sety(y)
+
+pencere.listen()
+pencere.onkeypress(raketa_up, 'w')
+pencere.onkeypress(raketa_down, 's')
+pencere.onkeypress(raketb_up, 'Up')
+pencere.onkeypress(raketb_down, 'Down')
+
+while True:
+    pencere.update()
+    top.setx(top.xcor() + top.dx)
+    top.sety(top.ycor() + top.dy)
+
+    if top.ycor()>290 or top.ycor()<-290:
+        top.dy = top.dy * -1
+
+    if top.xcor()>390:
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+        top.goto(0, 0)
+        top.dx = top.dx * -1
+        xala = xalb + 1
+        yazi.clear()
+        yazi.write("Oyuncu A:{}   Oyuncu B:{}".format(xala, xalb), align='center', font=('Courier', 24, 'bold'))
+    if top.xcor()<-390:
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+        top.goto(0, 0)
+        top.dx = top.dx * -1
+        xala = xalb + 1
+        yazi.clear()
+        yazi.write("Oyuncu A:{}   Oyuncu B:{}".format(xala, xalb), align='center', font=('Courier', 24, 'bold'))
+
+    if (top.xcor()>340 and top.xcor()<350) and (top.ycor()<raketb.ycor()+60 and top.ycor()>raketb.ycor()-60):
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+        top.setx(340)
+        top.dx = top.dx * -1
+    if (top.xcor()<-340 and top.xcor()>-350) and (top.ycor()<raketa.ycor()+60 and top.ycor()>raketa.ycor()-60):
+        winsound.PlaySound('bounce.wav', winsound.SND_ASYNC)
+        top.setx(-340)
+        top.dx = top.dx * -1
